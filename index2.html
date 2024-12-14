@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QQ查询绑定手机号</title>
+    <style>
+        /* 基础样式 */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6e7cfa, #c7a9f4); /* 渐变背景 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* 容器样式 */
+        .container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        label {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #6e7cfa; /* 输入框获得焦点时边框颜色变化 */
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: #6e7cfa;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #4e5bb1;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QQ查询绑定手机号</h1>
+        <!-- 设置 target="_blank" 使其在新标签页中打开 -->
+        <form id="qqForm" action="" method="get" target="_blank">
+            <label for="qqInput">请输入QQ号：</label>
+            <input type="text" id="qqInput" name="qq" placeholder="输入QQ号" required>
+            <button type="submit">查询</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("qqForm").addEventListener("submit", function(event) {
+            event.preventDefault();  // 防止表单默认提交
+
+            var qqNumber = document.getElementById("qqInput").value;
+            if (qqNumber) {
+                var apiUrl = `https://api.xywlapi.cc/qqapi?qq=${qqNumber}`;
+                document.getElementById("qqForm").action = apiUrl;  // 动态设置表单的action URL
+                document.getElementById("qqForm").submit();  // 提交表单
+            } else {
+                alert("请输入QQ号");
+            }
+        });
+    </script>
+</body>
+</html>
